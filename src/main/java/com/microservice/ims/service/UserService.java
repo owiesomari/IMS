@@ -25,7 +25,7 @@ public class UserService {
 		
 	}
 	
-	public User findById (Long id) {
+	public User findById (int id) {
 		
 	User user = userRepository.findById(id).get();
 	return user;
@@ -38,7 +38,7 @@ public class UserService {
 		
 	}
 	
-	public void delete(Long id)
+	public void delete(int id)
 	{
 		userRepository.deleteById(id);
 	}
