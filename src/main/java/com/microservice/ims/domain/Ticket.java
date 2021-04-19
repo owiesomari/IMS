@@ -16,14 +16,21 @@ public class Ticket {
 	private String status;
 	private String severity;
 	private String issueDate;
+	private String department;
 	
+
+
 	private int userId;
-	private int customerId;
-	private int assigneeId;
+	private String customerAccountNumber;
+	private String assigneeEmail;
 	
 	
+	public Ticket() {
+	}
+
+
 	public Ticket(int id, String subject, String problemDescription, String status, String severity,
-			String issueDate, int userId, int customerId, int assigneeId) {
+			String issueDate, int userId, String customerAccountNumber, String assigneeEmail) {
 		super();
 		this.id = id;
 		this.subject = subject;
@@ -32,10 +39,18 @@ public class Ticket {
 		this.severity = severity;
 		this.issueDate = issueDate;
 		this.userId = userId;
-		this.customerId = customerId;
-		this.assigneeId = assigneeId;
+		this.customerAccountNumber = customerAccountNumber;
+		this.assigneeEmail = assigneeEmail;
 	}
 
+	public String getDepartment() {
+		return department;
+	}
+	
+	
+	public void setDepartment(String department) {
+		this.department = department;
+	}
 
 	public int getId() {
 		return id;
@@ -107,24 +122,24 @@ public class Ticket {
 	}
 
 
-	public int getCustomerId() {
-		return customerId;
+	public String getCustomerAccountNumber() {
+		return customerAccountNumber;
 	}
 
 
-	public void setCustomerId(int customerId) {
-		this.customerId = customerId;
+	public void setCustomerAccountNumber(String customerAccountNumber) {
+		this.customerAccountNumber = customerAccountNumber;
 	}
 
 
-	public int getAssigneeId() {
-		return assigneeId;
+	public String getAssigneeEmail() {
+		return assigneeEmail;
 	}
 
 
-	public void setAssigneeId(int assigneeId) {
-		this.assigneeId = assigneeId;
+	public void setAssigneeEmail(String assigneeEmail) {
+		this.assigneeEmail = assigneeEmail;
 	}
-	
-	
+
+
 }

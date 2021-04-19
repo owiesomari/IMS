@@ -8,6 +8,6 @@ import com.microservice.ims.domain.Ticket;
 
 @Repository
 public interface TicketRepository extends MongoRepository<Ticket, Integer>{
-	@Query("{userId:'?0'}")
+	@Query("{user._id:?0}")
 public Ticket findByUserId(int userId);
 }

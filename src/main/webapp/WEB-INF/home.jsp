@@ -35,25 +35,25 @@
   <thead>
     <tr>
       <th scope="col">Ticket ID</th>
-      <th scope="col">Customer Name</th>
+      <th scope="col">Customer Account Number</th>
       <th scope="col">Subject</th>
       <th scope="col">Status</th>
       <th scope="col">Severity</th>
       <th scope="col">Department</th>
-      <th scope="col">Assignee</th>
+      <th scope="col">Assignee Email</th>
     </tr>
   </thead>
   <tbody id="myTable">
 
-      <c:forEach items="${ticketData}" var="ticket">
+      <c:forEach items="${tickets}" var="ticket">
         <tr>
-            <td><a href="viewTicket.jsp" style="font-weight: bold; color: black; ">${ticket.ticketId}</a></td>
-            <td>${ticket.customerName}</td>
+            <td><a href="viewTicket.jsp" style="font-weight: bold; color: black; ">${ticket.id}</a></td>
+            <td>${ticket.customerAccountNumber}</td>
             <td>${ticket.subject}</td>
             <td>${ticket.status}</td>
             <td>${ticket.severity}</td>
             <td>${ticket.department}</td>
-            <td>${ticket.assignee}</td>
+            <td>${ticket.assigneeEmail}</td>
         </tr>
     </c:forEach>
    
