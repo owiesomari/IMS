@@ -14,7 +14,7 @@
 
 <nav class="navbar navbar-light" style="background-color: #004383;">
   <h1 class="navbar-brand text-light" >
-    <img src="images/IMS-logo.png" width="30" height="30" class="d-inline-block align-top" alt="IMS-logo" >
+    <img src="images/IMS-logo.png" width="30" height="30" class="d-inline-block align-top" >
     Incident Management System  </h1>
  <form class="form-inline">
     <input class="form-control mb-1" id="myInput" type="text" placeholder="Search...">
@@ -33,7 +33,7 @@
 <div class="container mt-4">
 <table class="table table-striped table-bordered" id="table">
   <thead>
-    <tr>
+    <tr style="background-color: #F2F2F2">
       <th scope="col">Ticket ID</th>
       <th scope="col">Customer Account Number</th>
       <th scope="col">Subject</th>
@@ -43,10 +43,10 @@
       <th scope="col">Assignee Email</th>
     </tr>
   </thead>
-  <tbody id="myTable">
+  <tbody id="myTable" >
 
       <c:forEach items="${tickets}" var="ticket">
-        <tr>
+        <tr style="${ticket.status == 'Open' ? ticket.severity == 'HIGH' ? 'background-color: #f8d7da' : 'background-color: #fff3cd' :'background-color: #d4edda'}">
             <td><a href="viewTicket.jsp" style="font-weight: bold; color: black; ">${ticket.id}</a></td>
             <td>${ticket.customerAccountNumber}</td>
             <td>${ticket.subject}</td>
@@ -72,5 +72,9 @@
     });
     </script>
     
+    <script >
+    
+    
+    </script>
 </body>
 </html>
