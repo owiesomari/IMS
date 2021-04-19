@@ -15,7 +15,7 @@ public class Ticket {
 	private String problemDescription;
 	private String status;
 	private String severity;
-	private LocalDateTime issueDate;
+	private String issueDate;
 	
 	private int userId;
 	private int customerId;
@@ -23,7 +23,7 @@ public class Ticket {
 	
 	
 	public Ticket(int id, String subject, String problemDescription, String status, String severity,
-			LocalDateTime issueDate, int userId, int customerId, int assigneeId) {
+			String issueDate, int userId, int customerId, int assigneeId) {
 		super();
 		this.id = id;
 		this.subject = subject;
@@ -87,12 +87,12 @@ public class Ticket {
 	}
 
 
-	public LocalDateTime getIssueDate() {
+	public String getIssueDate() {
 		return issueDate;
 	}
 
 
-	public void setIssueDate(LocalDateTime issueDate) {
+	public void setIssueDate(String issueDate) {
 		this.issueDate = issueDate;
 	}
 

@@ -19,7 +19,7 @@
     <div class="row">
         <div class="col-md-10 mx-auto">
           <h4>New Ticket</h4>
-            <form>
+            <form method="post" action="/test">
                 <div class="form-group row mt-5">
                     <div class="col-sm-6">
                         <label>Customer Name</label>
