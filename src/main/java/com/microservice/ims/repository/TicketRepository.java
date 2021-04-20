@@ -11,8 +11,10 @@ import com.microservice.ims.domain.Ticket;
 @Repository
 public interface TicketRepository extends MongoRepository<Ticket, Integer>{
 
-public List<Ticket> findByuserId(int userId);
 
-Ticket findTopByOrderByIdDesc();
+	public Ticket findTopByOrderByIdDesc();
+	public Ticket findById(int id);
+	public List<Ticket> findByuserId(int userId);
+
 
 }

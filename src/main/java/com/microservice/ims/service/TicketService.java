@@ -1,5 +1,6 @@
 package com.microservice.ims.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,12 +28,14 @@ public class TicketService {
 	public List<Ticket> findByUserId(int userId) {
 		return	ticketRepository.findByuserId(userId);
 	}
+	
 	public Ticket findByAssigneeId(int addigneeId)
 	{
 		//return	ticketRepository.findOne()
 		return null;
 
 	}
+	
 	public List<Ticket> findAll () {
 		List<Ticket>tickets = ticketRepository.findAll();
 		return tickets;
@@ -44,6 +47,41 @@ public class TicketService {
 		int lastId = last.getId();
 		return lastId+1;
 	}
+
+	public Ticket findById(int id){
+		Ticket result= ticketRepository.findById(id);
+
+		return result;
+	}
 	
+	public String updateTicketStatus(Ticket ticket){
+		System.out.println("ticket id :::: "+ticket.getId());
+		Ticket result= ticketRepository.findById(ticket.getId());
+		if(result==null){
+			System.out.println("result is null !!!!!!!");
+		}
+		if(!result.getStatus().equals(ticket.getStatus())){
+			result= save(ticket);
+			return result==null?"Error Updating Ticket":"Ticket Updated Successfully";
+		} 
+		return "Ticket Status is not changed !";
+	}
+
+	public List<String> validate(Ticket ticket){
+
+		List<String> errors= new ArrayList<>();
+		if(!ticket.getCustomerAccountNumber().matches("[0-9]{13}")){
+			errors.add("Accont Number can take only numbers !");
+			System.out.println("Invalid Customer Account Number format !");
+		}
+
+		if(!ticket.getAssigneeEmail().matches("^[a-zA-Z][a-zA-Z0-9_.]*@arabbank.com.jo")){
+			System.out.println("Email not valid !");
+			errors.add("Invalid Assignee Email format !");
+		}
+
+		return errors;
+	}
+
 
 }
