@@ -1,6 +1,7 @@
 package com.microservice.ims.controller;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,11 +27,16 @@ public class TicketController {
 		this.ticketService=ticketService;
 	}
 
-	@PostMapping("/addTicket")
-	@ResponseBody
-	public Ticket create(@RequestBody Ticket ticket) {
+	//@PostMapping("/addTicket")
+	//@ResponseBody
+	@RequestMapping(value = "/addTicket", method = RequestMethod.POST)
+	public String create(Model model, Ticket ticket) {
+		ticket.setUserId(1);
+		ticket.setId(ticketService.getAndIncrementId());
 		Ticket ticketResult=ticketService.save(ticket);
-		return ticketResult;	
+
+		model.addAttribute("tickets", ticketService.findAll());
+		return "home";	
 
 	}
 
@@ -38,21 +44,33 @@ public class TicketController {
 	@RequestMapping(value="/dashboard", method= RequestMethod.POST)
 	public String getAllTickets(Model model)
 	{
-		model.addAttribute("tickets", ticketService.findByUserId(12));
+		model.addAttribute("tickets", ticketService.findAll());
 		return "home";	
 
 	}
 
 	@GetMapping("/index")
 	public String index(){
-		return "test1";
+		return "login";
 	}
 
 	@RequestMapping(value="/test", method= RequestMethod.POST)
 	public String testJSP(Model model)
 	{
 		System.out.println("from form ");
-		//		model.addAttribute("name", " khalid");
 		return "home";
 	}
+	@PostMapping("/getAllTickets")
+	public List<Ticket> getAllTeckits()
+	{
+		List<Ticket> tickets=ticketService.findAll();
+		return tickets;
+	}
+	
+	@GetMapping("/addNewTicket")
+	public String newTicket(){
+		return "newTicket";
+	}
+	
+	
 }

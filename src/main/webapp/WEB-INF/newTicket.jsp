@@ -19,33 +19,46 @@
     <div class="row">
         <div class="col-md-10 mx-auto">
           <h4>New Ticket</h4>
-            <form method="post" action="/test">
+            <form method="post" action="addTicket">
                 <div class="form-group row mt-5">
+                
+                <div class="col-sm-6">
+                        <label>Customer Account Number</label>
+                        <input type="text" class="form-control" name="customerAccountNumber" id="customerAccountNumber" required>
+                    </div>
+                
                     <div class="col-sm-6">
                         <label>Customer Name</label>
                         <input type="text" class="form-control" name="customerName" id="customerName" required>
                     </div>
-                    <div class="col-sm-6">
+                    
+                    
+                </div>
+                <div class="form-group row">
+                <div class="col-sm-6">
                         <label>Department</label>
                         <input type="text" class="form-control" name="department" id="department" required>
                     </div>
-                </div>
-                <div class="form-group row">
+                    
                     <div class="col-sm-6">
                         <label>Subject</label>
                         <input type="text" class="form-control" name="subject" id="subject" required>
                     </div>
-                    <div class="col-sm-6">
-                        <label>Assignee</label>
-                        <input type="text" class="form-control" name="assignee" id="assignee" required>
-                    </div>
+                   
                 </div>
                 <div class="form-group row">
+                 <div class="col-sm-6">
+                        <label>Assignee Email</label>
+                        <input type="text" class="form-control" name="assigneeEmail" id="assigneeEmail" required>
+                    </div>
                     <div class="col-sm-6">
                         <label>Status</label>
                         <input type="text" class="form-control" name="status" id="status" value="Open" readonly> 
                     </div>
-                    <div class="col-sm-6">
+                   
+                </div>
+                <div class="form-group row">
+                 <div class="col-sm-6">
                         <label>Severity</label>
 					    <select class="form-control" name="severity" id="severity" required>
 					      <option value="low">Low</option>
@@ -53,15 +66,20 @@
 					      <option value="high">High</option>					
 		   			 </select>            			
          		  </div>
+         		  
+         		  <div class="col-sm-6">
+                        <label>Issue Date</label>
+					    <input type="date" class="form-control" name="issueDate" id="issueDate" ></textarea>
+                    </div>                                  	
                 </div>
+                
                 <div class="form-group row">
-                		   <div class="col-sm-6">
+                <div class="col-sm-6">
                         <label>Description</label>
-					    <textarea class="form-control" name="description" id="description" rows="3"></textarea>
-                    </div>
-
+					    <textarea class="form-control" name="problemDescription" id="problemDescription" rows="3"></textarea>
+                    </div>               
                 </div>
-              <button type="button" class="btn btn-primary px-4 float-right" name="save" id="save"  style="background-color: #004383;">Save</button>  
+              <button type="sumbit" class="btn btn-primary px-4 float-right" name="save" id="save"  style="background-color: #004383;">Save</button>  
              <a href="home.jsp"> <button type="button" class="btn btn-danger px-4 float-right mr-2" name="cancel" id="cancel">Cancel</button></a>
             </form>
         </div>

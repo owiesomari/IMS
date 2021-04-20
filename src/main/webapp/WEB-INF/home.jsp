@@ -18,14 +18,14 @@
     Incident Management System  </h1>
  <form class="form-inline">
     <input class="form-control mb-1" id="myInput" type="text" placeholder="Search...">
-    <a href="login.jsp"> <button type="button" class="btn btn-danger px-4 ml-2 mb-1" name="logout" id="logout">Logout</button></a>
+    <a href="/login.jsp"> <button type="button" class="btn btn-danger px-4 ml-2 mb-1" name="logout" id="logout">Logout</button></a>
   </form>
 </nav>
 
 <div class="container mt-5">
   <div class="row justify-content-end">
     <div class="col-12 col-sm-6 col-md-2">
-<a href="newTicket.jsp"><button type="button" class="btn btn-outline-dark" >Add New Ticket</button></a>
+<a href="addNewTicket"><button type="button" class="btn btn-outline-dark" >Add New Ticket</button></a>
     </div>
   </div>
   </div>
