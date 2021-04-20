@@ -11,7 +11,7 @@ import org.springframework.data.mongodb.core.mapping.MongoId;
 @Document(collection = "ticket")
 public class Ticket {
 
-	
+
 	@Id
 	private int id;
 	private String subject;
@@ -19,49 +19,37 @@ public class Ticket {
 	private String status;
 	private String severity;
 	private String issueDate;
+	private String solution;
 	private String department;
 	private String customerAccountNumber;
-	private String customerName;
 	private int userId;
 	private String assigneeEmail;
-	
-	 public long seq;
 
-	  public Ticket(long seq) {
-	    this.seq = seq;
-	  }
-	
 	public Ticket() {
 	}
 
 
-	public Ticket(int id, String subject, String problemDescription, String status, String severity,
-			String issueDate, int userId, String customerAccountNumber, String assigneeEmail,String customerName) {
-		super();
+	public Ticket(int id, String subject, String problemDescription, String status, String severity, String issueDate,
+			String solution, String department, String customerAccountNumber, int userId, String assigneeEmail) {
 		this.id = id;
 		this.subject = subject;
 		this.problemDescription = problemDescription;
 		this.status = status;
 		this.severity = severity;
 		this.issueDate = issueDate;
-		this.userId = userId;
+		this.solution = solution;
+		this.department = department;
 		this.customerAccountNumber = customerAccountNumber;
+		this.userId = userId;
 		this.assigneeEmail = assigneeEmail;
-		this.customerName=customerName;
 	}
-public String getcustomerName()
-{
-	return customerName;
-}
-public void setcustomerName(String customerName)
-{
-	this.customerName=customerName;
-}
+
+
 	public String getDepartment() {
 		return department;
 	}
-	
-	
+
+
 	public void setDepartment(String department) {
 		this.department = department;
 	}
@@ -123,6 +111,16 @@ public void setcustomerName(String customerName)
 
 	public void setIssueDate(String issueDate) {
 		this.issueDate = issueDate;
+	}
+
+
+	public String getSolution() {
+		return solution;
+	}
+
+
+	public void setSolution(String solution) {
+		this.solution = solution;
 	}
 
 

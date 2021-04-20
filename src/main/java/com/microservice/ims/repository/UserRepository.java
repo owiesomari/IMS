@@ -7,5 +7,6 @@ import com.microservice.ims.domain.User;
 @Repository
 public interface UserRepository extends MongoRepository<User, Integer> {
 	
+	public User getUserByEmail(String email);
 
 }
