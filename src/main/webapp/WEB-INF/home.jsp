@@ -6,32 +6,39 @@
 <head>
 <meta charset="windows-1256">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 <title>Incident Management System</title>
 </head>
 <body>
 
-<nav class="navbar navbar-light" style="background-color: #004383;">
-  <h1 class="navbar-brand text-light" >
-    <img src="images/IMS-logo.png" width="30" height="30" class="d-inline-block align-top" >
-    Incident Management System  </h1>
- <form class="form-inline">
-    <input class="form-control mb-1" id="myInput" type="text" placeholder="Search...">
-    <a href="login.jsp"> <button type="button" class="btn btn-danger px-4 ml-2 mb-1" name="logout" id="logout">Logout</button></a>
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #004383;">
+  <h1 class="navbar-brand text-light">
+    <img src="images/IMS-logo.png" width="30" height="30" class="d-inline-block align-top">
+    Incident Management System </h1>
+    <button class="navbar-toggler mb-1" data-toggle="collapse" data-target="#navbarMenu"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navbarMenu" >
+ <form class="form-inline navbar-nav ml-auto" method="post">
+     <button type="submit" class="btn btn-outline-light px-4 mr-2 mb-1" name="search" id="search">Search</button>
+    <input class="form-control mb-1" id="customerAccountNumber" type="text" placeholder="Search for account#" minlength="13" autocomplete="off" required>
+   <button class="btn btn-danger btn-lg fas fa-sign-out-alt ml-2 mb-1" name="logout" id="logout"></button> 
   </form>
+</div>
 </nav>
 
 <div class="container mt-5">
-  <div class="row justify-content-end">
-    <div class="col-12 col-sm-6 col-md-2">
-<a href="newTicket.jsp"><button type="button" class="btn btn-outline-dark" >Add New Ticket</button></a>
+  <div class="row">
+    <div class="col-12 col-sm-6 col-md-2 mr-auto">
+    <input class="form-control mb-1" id="filter" type="text" placeholder="Filter..." autocomplete="off">
+    </div>
+    <div class="col-12 col-sm-6 col-md-2 ml-2">
+	<a href="newTicket.jsp"><button type="button" class="btn btn-outline-dark" name="newTicket" id="newTicket">
+	<span class="fas fa-plus"></span> New Ticket</button></a>
     </div>
   </div>
   </div>
 
 <div class="container mt-4">
-<table class="table table-striped table-bordered" id="table">
+<table class="table table-bordered" id="table">
   <thead>
     <tr style="background-color: #F2F2F2">
       <th scope="col">Ticket ID</th>
@@ -63,18 +70,16 @@
 
 <script>
     $(document).ready(function(){
-      $("#myInput").on("keyup", function() {
+      $("#filter").on("keyup", function() {
         var value = $(this).val().toLowerCase();
-        $("#myTable tr").filter(function() {
+        $("#filter tr").filter(function() {
           $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
       });
     });
     </script>
-    
-    <script >
-    
-    
-    </script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 </body>
 </html>
