@@ -11,6 +11,7 @@
 </head>
 <body>
 
+
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #004383;">
   <h1 class="navbar-brand text-light">
     <img src="images/IMS-logo.png" width="30" height="30" class="d-inline-block align-top">
@@ -26,6 +27,7 @@
 </nav>
 
 <div class="container mt-5">
+
   <div class="row">
     <div class="col-12 col-sm-6 col-md-2 mr-auto">
     <input class="form-control mb-1" id="filter" type="text" placeholder="Filter..." autocomplete="off">

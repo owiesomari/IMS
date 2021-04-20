@@ -1,14 +1,17 @@
 package com.microservice.ims.domain;
 
 import java.time.LocalDateTime;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.persistence.Id;
 
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
 @Document(collection = "ticket")
 public class Ticket {
 
+	
 	@Id
 	private int id;
 	private String subject;
@@ -17,20 +20,23 @@ public class Ticket {
 	private String severity;
 	private String issueDate;
 	private String department;
-	
-
-
-	private int userId;
 	private String customerAccountNumber;
+	private String customerName;
+	private int userId;
 	private String assigneeEmail;
 	
+	 public long seq;
+
+	  public Ticket(long seq) {
+	    this.seq = seq;
+	  }
 	
 	public Ticket() {
 	}
 
 
 	public Ticket(int id, String subject, String problemDescription, String status, String severity,
-			String issueDate, int userId, String customerAccountNumber, String assigneeEmail) {
+			String issueDate, int userId, String customerAccountNumber, String assigneeEmail,String customerName) {
 		super();
 		this.id = id;
 		this.subject = subject;
@@ -41,8 +47,16 @@ public class Ticket {
 		this.userId = userId;
 		this.customerAccountNumber = customerAccountNumber;
 		this.assigneeEmail = assigneeEmail;
+		this.customerName=customerName;
 	}
-
+public String getcustomerName()
+{
+	return customerName;
+}
+public void setcustomerName(String customerName)
+{
+	this.customerName=customerName;
+}
 	public String getDepartment() {
 		return department;
 	}
