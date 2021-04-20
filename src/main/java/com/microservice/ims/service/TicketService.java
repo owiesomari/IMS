@@ -2,6 +2,7 @@ package com.microservice.ims.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,7 @@ import com.microservice.ims.repository.TicketRepository;
 
 @Service
 public class TicketService {
+	@Autowired
 	private final TicketRepository ticketRepository ;
 
 	public TicketService(TicketRepository ticketRepository)
@@ -42,5 +44,6 @@ public class TicketService {
 		int lastId = last.getId();
 		return lastId+1;
 	}
+	
 
 }
