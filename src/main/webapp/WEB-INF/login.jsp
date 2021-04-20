@@ -22,7 +22,7 @@
     <div class="row justify-content-center">
       <div class="row justify-content-center col-sm-6 col-md-12"><img src="images/AB-logo.png" alt="AB Logo" ></div>        
     <div class="col-sm-12 col-md-4">
-        <form action="#" method="POST" id="form" class="needs-validation" novalidate>
+        <form action="dashboard" method="POST" id="form" class="needs-validation" novalidate>
         <label class="font-weight-bold">Email</label>
         <div class="input-group mb-3">
           <div class="input-group-append">
