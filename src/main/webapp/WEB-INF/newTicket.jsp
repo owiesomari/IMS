@@ -22,8 +22,9 @@ $(document).ready(function(){
 <body>
 
 <nav class="navbar navbar-light" style="background-color: #004383;">
- <a href="home.jsp"> <h1 class="navbar-brand text-light">Incident Management System</h1></a>
-</nav>
+    <a href="./dashboard"> <h1 class="navbar-brand text-light" >
+        <img src="../images/IMS-logo.png" width="30" height="30" class="d-inline-block align-top">
+        Incident Management System  </h1></a></nav>
 
 <div class="container py-5">
     <div class="row">
@@ -35,9 +36,9 @@ $(document).ready(function(){
                 <div class="form-group row mt-5">
                 <div class="col-sm-6">
                         <label>Customer Account Number</label>       
-                        <input type="text" class="form-control" autocomplete="false"
-                        onkeypress="return event.charCode >= 48 && event.charCode <= 57" minlength="13" maxlength="13" autocomplete="off"
-                        placeholder="#############" name="customerAccountNumber" id="customerAccountNumber" required>
+                        <input type="text" class="form-control"
+                onkeypress="return event.charCode >= 48 && event.charCode <= 57" minlength="13" maxlength="13" autocomplete="off"
+               placeholder="#############" name="customerAccountNumber" id="customerAccountNumber" ondrop="return false;" onpaste="return false;" required>
                     </div>
                     
                      <div class="col-sm-6">
@@ -90,7 +91,7 @@ $(document).ready(function(){
                     </div>               
                 </div>
               <button type="sumbit" class="btn btn-primary px-4 float-right" name="save" id="save"  style="background-color: #004383;">Save</button>  
-             <a href="home.jsp"> <button type="button" class="btn btn-danger px-4 float-right mr-2" name="cancel" id="cancel">Cancel</button></a>
+<button onclick="window.history.back();" type="button" class="btn btn-danger px-4 float-right mr-2" name="cancel" id="cancel">Cancel</button>
             </form>
         </div>
     </div>
