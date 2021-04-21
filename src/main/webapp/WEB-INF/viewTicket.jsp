@@ -47,7 +47,7 @@
 
 <nav class="navbar navbar-light" style="background-color: #004383;">
     <a href="../dashboard"> <h1 class="navbar-brand text-light" >
-        <img src="images/IMS-logo.png" width="30" height="30" class="d-inline-block align-top">
+        <img src="../images/IMS-logo.png" width="30" height="30" class="d-inline-block align-top">
         Incident Management System  </h1></a></nav>
 
 <div class="container py-5">
@@ -64,7 +64,7 @@
                             <input type="text" class="form-control" autocomplete="false"
                             onkeypress="return event.charCode >= 48 && event.charCode <= 57" minlength="13" maxlength="13"
                             placeholder="#############"
-                            name="customerAccountNumber" id="customerAccountNumber" value="${ticket.customerAccountNumber }" required>
+                            name="customerAccountNumber" id="customerAccountNumber" value="${ticket.customerAccountNumber }" disabled>
                         </div>
                          <div class="col-sm-6">
                             <label>Department</label>
@@ -101,7 +101,7 @@
                             <select class="form-control" name="status" id="status">
                                 <option value="Open" id="open">Open</option>		
                                 <option value="Close" id="close">Close</option>	
-                                <input type="hidden" id="isClosed" value="true">		
+                                <input type="hidden" id="isClosed" value="${ticket.status=='Close'?true:false}"> 	
                               </select>     
                         </div>
                     </div>
@@ -118,7 +118,7 @@
                     </div>
 
               <button type="submit" class="btn btn-primary px-4 float-right" name="update" id="update"  style="background-color: #004383;">Update</button>  
-             <a href="home.jsp"> <button type="button" class="btn btn-danger px-4 float-right mr-2" name="cancel" id="cancel">Cancel</button></a>
+<button onclick="window.history.back();" type="button" class="btn btn-danger px-4 float-right mr-2" name="cancel" id="cancel">Cancel</button>
             </form>
         </div>
     </div>

@@ -34,7 +34,7 @@
 
 	<div class="container-fluid mt-5 p-2">
     <div class="row justify-content-center">
-      <div class="row justify-content-center col-sm-6 col-md-12"><img src="images/AB-logo.png" alt="AB Logo" ></div>        
+      <div class="row justify-content-center col-sm-6 col-md-12"><img src="../images/AB-logo.png" alt="AB Logo" ></div>        
     <div class="col-sm-12 col-md-4">
           <div id="error" role="alert"></div>
       <input type="hidden" id="errorMessage" value="${errorMessage}">

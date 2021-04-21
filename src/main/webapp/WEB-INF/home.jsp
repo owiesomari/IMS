@@ -15,14 +15,16 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #004383;">
   <h1 class="navbar-brand text-light">
-    <img src="images/IMS-logo.png" width="30" height="30" class="d-inline-block align-top">
+    <img src="../images/IMS-logo.png" width="30" height="30" class="d-inline-block align-top">
     Incident Management System </h1>
     <button class="navbar-toggler mb-1" data-toggle="collapse" data-target="#navbarMenu"><span class="navbar-toggler-icon"></span></button>
     <div class="collapse navbar-collapse" id="navbarMenu" >
-    <input class="form-control mb-1 mr-2 col-md-4 ml-auto" id="customerAccountNumber" type="text" placeholder="Search for account#" minlength="13" autocomplete="off" required>
+    <input class="form-control mb-1 mr-2 col-md-4 ml-auto" id="customerAccountNumber" type="text" 
+    placeholder="Search for account#" minlength="13" autocomplete="off" ondrop="return false;" onpaste="return false;"
+     onkeypress="return event.charCode >= 48 && event.charCode <= 57" minlength="13" maxlength="13" required>
      <button type="submit" class="btn btn-outline-light px-4 mr-2 mb-1" name="search" id="search">Search</button>
  <form class="form-inline navbar-nav ml-4" method="post">
-   <button class="btn btn-danger btn-lg fas fa-sign-out-alt ml-2 mb-1" name="logout" id="logout"></button> 
+<a href="../index"><button class="btn btn-danger btn-lg fas fa-sign-out-alt ml-2 mb-1" name="logout" id="logout" title="Logout"></button></a>
   </form>
 </div>
 </nav>
@@ -30,9 +32,6 @@
 <div class="container mt-5">
 
   <div class="row">
-    <!-- <div class="col-12 col-sm-6 col-md-2 mr-auto">
-    <input class="form-control mb-1" id="filter" type="text" placeholder="Filter..." autocomplete="off">
-    </div> -->
     <div class="col-12 col-sm-6 col-md-2 ml-0">
 	<a href="addNewTicket"><button type="button" class="btn btn-outline-dark" name="newTicket" id="newTicket">
 	<span class="fas fa-plus"></span> New Ticket</button></a>
@@ -75,25 +74,16 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-
-
 <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js" ></script>
 <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js" ></script>
 
 <script>
     $(document).ready(function(){
-      $("#filter").on("keyup", function() {
-        var value = $(this).val().toLowerCase();
-        $("#filter tr").filter(function() {
-          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-        });
-      });
-      
       $('#table').DataTable();
     });
     
-    
      $("#search").click(function(){
+    	 var table="";
   	  var accountNum= $("#customerAccountNumber").val();
   	  console.log("account # "+accountNum);
   	  if(accountNum == "" || accountNum==null) return;
@@ -105,7 +95,6 @@
   	  	dataType:"json",
   	    cache: false,
   	    success: function (data) {
-  	            var table="";
   	          
   	      $.each(data, function(key,value) {
   	    	 table+="<tr style="+"${ticket.status == 'Open' ? ticket.severity == 'HIGH' ? 'background-color: #f8d7da' : 'background-color: #fff3cd' :'background-color: #d4edda'}"+">"+ 
@@ -119,16 +108,12 @@
    			"</tr>";
 	        
   	    	}); 
-  	      $("#searchTable #searchTableBody").append(table);
-  	      table="";
-  	      
+  	      $("#searchTable #searchTableBody").append(table);  	      
   	      $("#searchModal").modal("show");
   	      
   	    }
-  	});
-  	  
-  	  
-  	  
+  	}); 
+      table="";
     }); 
     </script>
     
@@ -168,5 +153,4 @@
 </div>
 
 </body>
-
 </html>
