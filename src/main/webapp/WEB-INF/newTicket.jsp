@@ -13,6 +13,7 @@ $(document).ready(function(){
 	$("#error").hide();
 	if($("#errorMessage").val()!=""){
 		$("#error").text($("#errorMessage").val());
+		  $("#error").addClass("alert alert-danger");
 		 $("#error").show();
 	}
 	});
@@ -27,8 +28,8 @@ $(document).ready(function(){
 <div class="container py-5">
     <div class="row">
         <div class="col-md-10 mx-auto">
-        <div id="error" class="alert alert-danger" role="alert"></div>
-            <input type="hidden" id="errorMessage" value="">
+        <div id="error" role="alert"></div>
+            <input type="hidden" id="errorMessage" value="${errorMessage}">
           <h4>New Ticket</h4>
             <form method="post" action="addTicket">
                 <div class="form-group row mt-5">

@@ -10,9 +10,16 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 <script>
     $(document).ready(function(){
+        $("#error").hide();
+        if($("#errorMessage").val()!=""){
+          $("#error").text($("#errorMessage").val());
+          $("#error").addClass("alert alert-danger");
+           $("#error").show();
+        }
             var selectedStatus=  $("#status").children("option:selected").val();
             var isClosed=$("#isClosed").val();
-            if(selectedStatus=="close" || isClosed=="true"){
+            if(selectedStatus=="Close" || isClosed=="true"){
+            	$("#close").attr('selected','selected')
                 $("#customerAccountNumber").attr('disabled','disabled')
                 $("#assigneeEmail").attr('disabled','disabled')
                 $("#department").attr('disabled','disabled')
@@ -42,12 +49,14 @@
 
 <nav class="navbar navbar-light" style="background-color: #004383;">
     <a href="../dashboard"> <h1 class="navbar-brand text-light" >
-        <img src="images/IMS-logo.png" width="30" height="30" class="d-inline-block align-top" alt="IMS-logo" >
+        <img src="images/IMS-logo.png" width="30" height="30" class="d-inline-block align-top">
         Incident Management System  </h1></a></nav>
 
 <div class="container py-5">
     <div class="row">
         <div class="col-md-10 mx-auto">
+                  <div id="error" role="alert"></div>
+      <input type="hidden" id="errorMessage" value="${errorMessage}">
           <h4>Ticket #${ticket.id}</h4>
             <form method="post" action="../UpdateTicket">
             	<input hidden name="id" value="${ticket.id}">
@@ -94,7 +103,7 @@
                             <select class="form-control" name="status" id="status" selected="${ticket.status }">
                                 <option value="Open" id="open">Open</option>		
                                 <option value="Close" id="close">Close</option>	
-                                <input type="hidden" id="isClosed" value="false">		
+                                <input type="hidden" id="isClosed" value="true">		
                               </select>     
                         </div>
                     </div>
