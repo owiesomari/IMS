@@ -8,6 +8,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 <title>Incident Management System</title>
+
+
 </head>
 <body>
 
@@ -19,10 +21,10 @@
     <button class="navbar-toggler mb-1" data-toggle="collapse" data-target="#navbarMenu"><span class="navbar-toggler-icon"></span></button>
     <div class="collapse navbar-collapse" id="navbarMenu" >
  <form class="form-inline navbar-nav ml-auto" method="post">
-     <button type="submit" class="btn btn-outline-light px-4 mr-2 mb-1" name="search" id="search">Search</button>
-    <input class="form-control mb-1" id="customerAccountNumber" type="text" placeholder="Search for account#" minlength="13" autocomplete="off" required>
    <button class="btn btn-danger btn-lg fas fa-sign-out-alt ml-2 mb-1" name="logout" id="logout"></button> 
   </form>
+    <input class="form-control mb-1" id="customerAccountNumber" type="text" placeholder="Search for account#" minlength="13" autocomplete="off" required>
+     <button type="submit" class="btn btn-outline-light px-4 mr-2 mb-1" name="search" id="search">Search</button>
 </div>
 </nav>
 
@@ -72,7 +74,9 @@
 
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
 <script>
     $(document).ready(function(){
       $("#filter").on("keyup", function() {
@@ -82,7 +86,82 @@
         });
       });
     });
+    
+    
+     $("#search").click(function(){
+  	  var accountNum= $("#customerAccountNumber").val();
+  	  console.log("account # "+accountNum);
+  	  if(accountNum == "" || accountNum==null) return;
+  	$.ajax({
+  	    type: "POST",
+  	    contentType: "application/json",
+  	    url: "/api/SearchAccountNumber",
+  	    data: accountNum,
+  	  	dataType:"json",
+  	    cache: false,
+  	    success: function (data) {
+  	            var table="";
+  	          
+  	      $.each(data, function(key,value) {
+  	    	 table+="<tr style="+"${ticket.status == 'Open' ? ticket.severity == 'HIGH' ? 'background-color: #f8d7da' : 'background-color: #fff3cd' :'background-color: #d4edda'}"+">"+ 
+  	    	 "<td><a href="+"viewTicket.jsp"+"style="+"font-weight: bold; color: black; "+">"+value.id+"</a></td>"+
+   	        "<td>"+value.customerAccountNumber+"</td>"+
+   	        "<td>"+value.subject+"</td>"+
+   	     	"<td>"+value.status+"</td>"+
+   	     	"<td>"+value.severity+"</td>"+
+   	  		"<td>"+value.department+"</td>"+
+   			"<td>"+value.assigneeEmail+"</td>"+
+   			"</tr>";
+	        
+  	    	}); 
+  	      $("#searchTable #searchTableBody").append(table);
+  	      table="";
+  	      
+  	      $("#searchModal").modal("show");
+  	      
+  	    }
+  	});
+  	  
+  	  
+  	  
+    }); 
     </script>
+    
+<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document" style="max-width: fit-content;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Account's Number Tickets</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table table-bordered" id="searchTable">
+  <thead>
+    <tr style="background-color: #F2F2F2">
+      <th scope="col">Ticket ID</th>
+      <th scope="col">Customer Account Number</th>
+      <th scope="col">Subject</th>
+      <th scope="col">Status</th>
+      <th scope="col">Severity</th>
+      <th scope="col">Department</th>
+      <th scope="col">Assignee Email</th>
+    </tr>
+  </thead>
+  <tbody id="searchTableBody" >
+
+  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 </body>
+
 </html>

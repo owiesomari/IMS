@@ -71,6 +71,7 @@ public class TicketController {
 	@RequestMapping(value="/dashboard", method= RequestMethod.POST)
 	public String getAllTickets(Model model, User user)
 	{
+		System.out.println("email :  "+ user.getEmail() + " ------  "+userService.getUserByEmail(user.getEmail()).getEmail());
 		if(userService.getUserByEmail(user.getEmail())==null){
 			System.out.println("user not valid ....");
 			return "login";
@@ -130,4 +131,19 @@ public class TicketController {
 		model.addAttribute("tickets", ticketService.findAll());
 		return "home";
 	}
+	
+	
+	
+	@RequestMapping(value="/SearchAccountNumber", method= RequestMethod.POST)
+	@ResponseBody
+	public List<Ticket> searchByAccountNumber(@RequestBody String accountNumber)
+	{
+		System.out.println("account # : "+accountNumber);
+		
+		return ticketService.getByCustomerAccountNumber(accountNumber);
+	}
+	
+	
+	
+	
 }

@@ -83,5 +83,13 @@ public class TicketService {
 		return errors;
 	}
 
+	public List<Ticket> getByCustomerAccountNumber(String accountNumber) {
+		List<Ticket> tickets= ticketRepository.findBycustomerAccountNumber(accountNumber);
+		for (Ticket ticket : tickets) {
+			System.out.println("ticket # "+ticket.getId());
+		}
+		return tickets;
+	}
+
 
 }
