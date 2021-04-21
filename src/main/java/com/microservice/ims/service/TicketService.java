@@ -13,7 +13,7 @@ import com.microservice.ims.repository.TicketRepository;
 
 @Service
 public class TicketService {
-	@Autowired
+	
 	private final TicketRepository ticketRepository ;
 
 	public TicketService(TicketRepository ticketRepository)
@@ -44,7 +44,10 @@ public class TicketService {
 
 	public int getAndIncrementId() {
 		Ticket last = ticketRepository.findTopByOrderByIdDesc();
-		int lastId = last.getId();
+		int lastId= 0;
+		if(last != null){
+			lastId = last.getId();
+		}
 		return lastId+1;
 	}
 
@@ -88,6 +91,12 @@ public class TicketService {
 		for (Ticket ticket : tickets) {
 			System.out.println("ticket # "+ticket.getId());
 		}
+		return tickets;
+	}
+
+	public List<Ticket> findByStatusAndSeverity(String status, String severity) {
+		
+		List<Ticket> tickets= ticketRepository.findByStatusAndSeverity(status, severity);
 		return tickets;
 	}
 

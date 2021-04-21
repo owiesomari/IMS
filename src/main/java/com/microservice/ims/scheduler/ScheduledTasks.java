@@ -27,16 +27,13 @@ public class ScheduledTasks {
 
 	private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
-	@Scheduled(fixedRate = 100000)
+	@Scheduled(fixedRate = 1800000)//30 mins
 	public void reportCurrentTime() {
-//		log.info("The time is now {}", dateFormat.format(new Date()));
 		
-		List<Ticket> tickets= ticketService.findAll();
+		List<Ticket> tickets= ticketService.findByStatusAndSeverity("Open", "High");
 		
 		for (Ticket ticket : tickets) {
-			if(ticket.getStatus().equalsIgnoreCase("open")){
-				ticketController.sendEmail(ticket);
-			}
+			ticketController.sendEmail(ticket);
 		}
 		
 	}
