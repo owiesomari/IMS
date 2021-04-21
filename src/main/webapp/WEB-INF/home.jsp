@@ -109,7 +109,7 @@
   	          
   	      $.each(data, function(key,value) {
   	    	 table+="<tr style="+"${ticket.status == 'Open' ? ticket.severity == 'HIGH' ? 'background-color: #f8d7da' : 'background-color: #fff3cd' :'background-color: #d4edda'}"+">"+ 
-  	    	 "<td><a href="+"viewTicket.jsp"+"style="+"font-weight: bold; color: black; "+">"+value.id+"</a></td>"+
+  	    	 "<td><a href="+"ViewTicket/"+value.id+" style=font-weight: bold; color: black;>"+value.id+"</a></td>"+
    	        "<td>"+value.customerAccountNumber+"</td>"+
    	        "<td>"+value.subject+"</td>"+
    	     	"<td>"+value.status+"</td>"+
