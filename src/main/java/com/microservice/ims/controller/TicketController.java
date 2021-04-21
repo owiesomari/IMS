@@ -135,11 +135,10 @@ public class TicketController {
 	{
 		
 		System.out.println("from update "+ ticket.getId());
-		ticketService.updateTicketStatus(ticket);
+		Ticket result= ticketService.save(ticket);
 		model.addAttribute("tickets", ticketService.findAll());
 		return "home";
 	}
-	
 	
 	
 	@RequestMapping(value="/SearchAccountNumber", method= RequestMethod.POST)
@@ -150,8 +149,6 @@ public class TicketController {
 		
 		return ticketService.getByCustomerAccountNumber(accountNumber);
 	}
-	
-	
 	
 	
 }
