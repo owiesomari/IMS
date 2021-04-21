@@ -20,11 +20,11 @@
     Incident Management System </h1>
     <button class="navbar-toggler mb-1" data-toggle="collapse" data-target="#navbarMenu"><span class="navbar-toggler-icon"></span></button>
     <div class="collapse navbar-collapse" id="navbarMenu" >
- <form class="form-inline navbar-nav ml-auto" method="post">
+    <input class="form-control mb-1 mr-2 col-md-4 ml-auto" id="customerAccountNumber" type="text" placeholder="Search for account#" minlength="13" autocomplete="off" required>
+     <button type="submit" class="btn btn-outline-light px-4 mr-2 mb-1" name="search" id="search">Search</button>
+ <form class="form-inline navbar-nav ml-4" method="post">
    <button class="btn btn-danger btn-lg fas fa-sign-out-alt ml-2 mb-1" name="logout" id="logout"></button> 
   </form>
-    <input class="form-control mb-1" id="customerAccountNumber" type="text" placeholder="Search for account#" minlength="13" autocomplete="off" required>
-     <button type="submit" class="btn btn-outline-light px-4 mr-2 mb-1" name="search" id="search">Search</button>
 </div>
 </nav>
 
@@ -34,7 +34,7 @@
     <div class="col-12 col-sm-6 col-md-2 mr-auto">
     <input class="form-control mb-1" id="filter" type="text" placeholder="Filter..." autocomplete="off">
     </div>
-    <div class="col-12 col-sm-6 col-md-2 ml-2">
+    <div class="col-12 col-sm-6 col-md-2 ml-2" style="text-align: end;">
 	<a href="addNewTicket"><button type="button" class="btn btn-outline-dark" name="newTicket" id="newTicket">
 	<span class="fas fa-plus"></span> New Ticket</button></a>
     </div>
@@ -58,7 +58,7 @@
 
       <c:forEach items="${tickets}" var="ticket">
         <tr style="${ticket.status == 'Open' ? ticket.severity == 'HIGH' ? 'background-color: #f8d7da' : 'background-color: #fff3cd' :'background-color: #d4edda'}">
-            <td><a href="viewTicket.jsp" style="font-weight: bold; color: black; ">${ticket.id}</a></td>
+            <td><a href="ViewTicket/${ticket.id}" style="font-weight: bold; color: black; ">${ticket.id}</a></td>
             <td>${ticket.customerAccountNumber}</td>
             <td>${ticket.subject}</td>
             <td>${ticket.status}</td>

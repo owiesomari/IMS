@@ -44,7 +44,7 @@ $(document).ready(function(){
                         <label>Department</label>
                     <select class="form-control" name="department" id="department" required>
                         <c:forEach items="${departments}" var="department">
-                        <option>${department.name}</option>
+                        <option value="${department}">${department}</option>
                     </c:forEach>				
                       </select>  
                     </div>
@@ -67,9 +67,9 @@ $(document).ready(function(){
                     <div class="col-sm-6">
                         <label>Severity</label>
 					    <select class="form-control" name="severity" id="severity" required>
-					      <option value="low">Low</option>
-					      <option value="medium">Medium</option>
-					      <option value="high">High</option>					
+					      <option value="Low">Low</option>
+					      <option value="Medium">Medium</option>
+					      <option value="High">High</option>					
 		   			 </select>            			
          		  </div>   
 

@@ -24,35 +24,47 @@
                 $("#update").hide()
                 $("#cancel").hide()
             }
+            var severity= "${ticket.severity}";
+            alert("severity : "+severity);
+            $('#severity option[value="'+severity+'"]').attr("selected",true);
+            
+            /* var dept= "${ticket.department}";
+            alert("dept : "+dept);
+            $('#department option[value="'+dept+'"]').attr("selected",true); */
+            
+            var status= "${ticket.status}";
+            alert("status : "+status);
+            $('#status option[value="'+status+'"]').attr("selected",true);
     });
     </script>
 </head>
 <body>
 
 <nav class="navbar navbar-light" style="background-color: #004383;">
-    <a href="home.jsp"> <h1 class="navbar-brand text-light" >
+    <a href="../dashboard"> <h1 class="navbar-brand text-light" >
         <img src="images/IMS-logo.png" width="30" height="30" class="d-inline-block align-top" alt="IMS-logo" >
         Incident Management System  </h1></a></nav>
 
 <div class="container py-5">
     <div class="row">
         <div class="col-md-10 mx-auto">
-          <h4>Ticket #123</h4>
-            <form>
+          <h4>Ticket #${ticket.id}</h4>
+            <form method="post" action="../UpdateTicket">
+            	<input hidden name="id" value="${ticket.id}">
                 <div class="form-group row mt-5">
                     <div class="col-sm-6">
                             <label>Customer Account Number</label>       
                             <input type="text" class="form-control" autocomplete="false"
                             onkeypress="return event.charCode >= 48 && event.charCode <= 57" minlength="13" maxlength="13"
                             placeholder="#############"
-                            name="customerAccountNumber" id="customerAccountNumber" required>
+                            name="customerAccountNumber" id="customerAccountNumber" value="${ticket.customerAccountNumber }" required>
                         </div>
                          <div class="col-sm-6">
                             <label>Department</label>
-                        <select class="form-control" name="department" id="department" required>
+                        <select class="form-control" name="department" id="department" required >
                             <c:forEach items="${departments}" var="department">
-                            <option>${department.name}</option>
-                        </c:forEach>				
+                        		<option value="${department}">${department}</option>
+                    		</c:forEach>				
                           </select>  
                         </div>
                     </div>
@@ -60,28 +72,28 @@
                     <div class="form-group row">
                      <div class="col-sm-6">
                             <label>Subject</label>
-                            <input type="text" class="form-control" name="subject" id="subject" autocomplete="off" required>
+                            <input type="text" class="form-control" name="subject" id="subject" autocomplete="off" value="${ticket.subject }" required>
                      </div> 
                         <div class="col-sm-6">
                             <label>Assignee Email</label>
-                            <input type="email" class="form-control" name="assigneeEmail" id="assigneeEmail" required>
+                            <input type="email" class="form-control" name="assigneeEmail" id="assigneeEmail" value="${ticket.assigneeEmail }" required>
                         </div>
                        
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-6">
                             <label>Severity</label>
-                            <select class="form-control" name="severity" id="severity" required>
-                              <option value="low">Low</option>
-                              <option value="medium">Medium</option>
-                              <option value="high">High</option>					
+                            <select class="form-control" name="severity" id="severity" value="${ticket.severity }" required>
+                              <option value="Low">Low</option>
+                              <option value="Medium">Medium</option>
+                              <option value="High">High</option>					
                             </select>            			
                        </div>   
                         <div class="col-sm-6">
                             <label>Status</label>
-                            <select class="form-control" name="status" id="status">
-                                <option value="open" id="open">Open</option>		
-                                <option value="close" id="close">Close</option>	
+                            <select class="form-control" name="status" id="status" selected="${ticket.status }">
+                                <option value="Open" id="open">Open</option>		
+                                <option value="Close" id="close">Close</option>	
                                 <input type="hidden" id="isClosed" value="false">		
                               </select>     
                         </div>
@@ -90,11 +102,11 @@
                     <div class="form-group row">
                     <div class="col-sm-6">
                             <label>Description</label>
-                            <textarea class="form-control" name="problemDescription" id="problemDescription" rows="3" required></textarea>
+                            <textarea class="form-control" name="problemDescription" id="problemDescription" rows="3" required>${ticket.problemDescription }</textarea>
                         </div>    
                         <div class="col-sm-6">
                             <label>Solution</label>
-                            <textarea class="form-control" name="solution" id="solution" rows="3" required></textarea>
+                            <textarea class="form-control" name="solution" id="solution" rows="3" required>${ticket.solution }</textarea>
                         </div>              
                     </div>
 
