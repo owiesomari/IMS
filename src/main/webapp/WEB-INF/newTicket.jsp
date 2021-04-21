@@ -7,6 +7,16 @@
 <meta charset="windows-1256">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 <title>Incident Management System</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#error").hide();
+	if($("#errorMessage").val()!=""){
+		$("#error").text($("#errorMessage").val());
+		 $("#error").show();
+	}
+	});
+</script>
 </head>
 <body>
 
@@ -17,14 +27,17 @@
 <div class="container py-5">
     <div class="row">
         <div class="col-md-10 mx-auto">
+        <div id="error" class="alert alert-danger" role="alert"></div>
+            <input type="hidden" id="errorMessage" value="">
           <h4>New Ticket</h4>
             <form method="post" action="addTicket">
                 <div class="form-group row mt-5">
                 <div class="col-sm-6">
                         <label>Customer Account Number</label>       
-                        <input type=text class="form-control" autocomplete="false"
+                        <input type="text" class="form-control" autocomplete="false"
                         onkeypress="return event.charCode >= 48 && event.charCode <= 57" minlength="13" maxlength="13"
-                        placeholder="#############" name="customerAccountNumber" id="customerAccountNumber" required>
+                        placeholder="#############"
+                        name="customerAccountNumber" id="customerAccountNumber" required>
                     </div>
                     
                      <div class="col-sm-6">
