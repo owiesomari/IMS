@@ -77,7 +77,7 @@ $(document).ready(function(){
                     <div class="col-sm-6">
                         <label>Status</label>
                         <select class="form-control" name="status" id="status">
-                            <option value="open">Open</option>			
+                            <option value="Open">Open</option>			
                           </select>     
                     </div>
                 </div>

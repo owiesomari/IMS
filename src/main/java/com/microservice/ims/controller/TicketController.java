@@ -47,8 +47,6 @@ public class TicketController {
 	}
 	
 
-	//@PostMapping("/addTicket")
-	//@ResponseBody
 	@RequestMapping(value = "/addTicket", method = RequestMethod.POST)
 	public String create(Model model, Ticket ticket) {
 		
@@ -126,6 +124,7 @@ public class TicketController {
 	@RequestMapping(value="/ViewTicket/{ticketId}", method= RequestMethod.GET)
 	public String viewTicket(Model model, @PathVariable("ticketId") int id)
 	{
+		System.out.println("view ticket ....");
 		model.addAttribute("departments", Department.values());
 		model.addAttribute("ticket", ticketService.findById(id));
 		return "viewTicket";

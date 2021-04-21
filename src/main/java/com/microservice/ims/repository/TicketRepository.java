@@ -16,6 +16,8 @@ public interface TicketRepository extends MongoRepository<Ticket, Integer>{
 	public Ticket findById(int id);
 	public List<Ticket> findByuserId(int userId);
 	public List<Ticket> findBycustomerAccountNumber(String accountNumber);
+	
+	public List<Ticket> findByStatusAndSeverity(String status, String severity);
 
 
 }
