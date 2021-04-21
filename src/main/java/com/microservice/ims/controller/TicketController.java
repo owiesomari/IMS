@@ -113,7 +113,7 @@ public class TicketController {
 		return "newTicket";
 	}
 	//@RequestMapping("/send")
-	private String sendEmail(Ticket ticket)
+	public String sendEmail(Ticket ticket)
 	{
 		try {
 			notificationService.sendEmail(ticket);
