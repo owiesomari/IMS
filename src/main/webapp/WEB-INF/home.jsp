@@ -8,8 +8,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 <title>Incident Management System</title>
-
-
+     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
 </head>
 <body>
 
@@ -31,10 +30,10 @@
 <div class="container mt-5">
 
   <div class="row">
-    <div class="col-12 col-sm-6 col-md-2 mr-auto">
+    <!-- <div class="col-12 col-sm-6 col-md-2 mr-auto">
     <input class="form-control mb-1" id="filter" type="text" placeholder="Filter..." autocomplete="off">
-    </div>
-    <div class="col-12 col-sm-6 col-md-2 ml-2" style="text-align: end;">
+    </div> -->
+    <div class="col-12 col-sm-6 col-md-2 ml-0">
 	<a href="addNewTicket"><button type="button" class="btn btn-outline-dark" name="newTicket" id="newTicket">
 	<span class="fas fa-plus"></span> New Ticket</button></a>
     </div>
@@ -77,6 +76,10 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 
+
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js" ></script>
+<script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js" ></script>
+
 <script>
     $(document).ready(function(){
       $("#filter").on("keyup", function() {
@@ -85,6 +88,8 @@
           $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
       });
+      
+      $('#table').DataTable();
     });
     
     
