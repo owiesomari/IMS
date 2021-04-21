@@ -13,6 +13,7 @@ $(document).ready(function(){
 	$("#error").hide();
 	if($("#errorMessage").val()!=""){
 		$("#error").text($("#errorMessage").val());
+		  $("#error").addClass("alert alert-danger");
 		 $("#error").show();
 	}
 	});
@@ -27,19 +28,16 @@ $(document).ready(function(){
 <div class="container py-5">
     <div class="row">
         <div class="col-md-10 mx-auto">
-        <c:if test="${not empty validations}">
-        <div hidden id="error" class="alert alert-danger" role="alert">${validations }</div>
-        </c:if>
-            <!-- <input type="hidden" id="errorMessage" value=""> -->
+        <div id="error" role="alert"></div>
+            <input type="hidden" id="errorMessage" value="${errorMessage}">
           <h4>New Ticket</h4>
             <form method="post" action="addTicket">
                 <div class="form-group row mt-5">
                 <div class="col-sm-6">
                         <label>Customer Account Number</label>       
                         <input type="text" class="form-control" autocomplete="false"
-                        onkeypress="return event.charCode >= 48 && event.charCode <= 57" minlength="13" maxlength="13"
-                        placeholder="#############"
-                        name="customerAccountNumber" id="customerAccountNumber" required>
+                        onkeypress="return event.charCode >= 48 && event.charCode <= 57" minlength="13" maxlength="13" autocomplete="off"
+                        placeholder="#############" name="customerAccountNumber" id="customerAccountNumber" required>
                     </div>
                     
                      <div class="col-sm-6">
@@ -61,7 +59,8 @@ $(document).ready(function(){
                    
                     <div class="col-sm-6">
                         <label>Assignee Email</label>
-                        <input type="email" class="form-control" name="assigneeEmail" id="assigneeEmail" required>
+                        <input type="email" class="form-control" name="assigneeEmail" id="assigneeEmail" 
+                        pattern=".+@arabbank.com.jo" placeholder="example@arabbank.com.jo" required>
                     </div>
                    
                 </div>
