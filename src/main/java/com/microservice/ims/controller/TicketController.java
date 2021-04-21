@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.microservice.ims.domain.Ticket;
 import com.microservice.ims.domain.User;
+import com.microservice.ims.enums.Department;
 import com.microservice.ims.service.NotificationService;
 import com.microservice.ims.service.TicketService;
 import com.microservice.ims.service.UserService;
@@ -52,7 +53,7 @@ public class TicketController {
 	public String create(Model model, Ticket ticket) {
 		
 		sendEmail(ticket);
-		
+		System.out.println("dept : "+ticket.getDepartment());
 		if(ticketService.validate(ticket).size()!=0){
 			model.addAttribute("validations", ticketService.validate(ticket));
 			return "newTicket";
@@ -68,10 +69,16 @@ public class TicketController {
 
 	}
 
-	@RequestMapping(value="/dashboard", method= RequestMethod.POST)
+	@RequestMapping(value="/dashboard")
 	public String getAllTickets(Model model, User user)
 	{
-		System.out.println("email :  "+ user.getEmail() + " ------  "+userService.getUserByEmail(user.getEmail()).getEmail());
+		if(user == null || user.getEmail() == null){//if user is null, we are using back
+			model.addAttribute("tickets", ticketService.findAll());
+			return "home";
+		}
+		
+		System.out.println("email :  "+ user.getEmail());
+		System.out.println("----------- "+userService.getUserByEmail(user.getEmail()).getEmail());
 		if(userService.getUserByEmail(user.getEmail())==null){
 			System.out.println("user not valid ....");
 			return "login";
@@ -101,7 +108,8 @@ public class TicketController {
 	}
 	
 	@GetMapping("/addNewTicket")
-	public String newTicket(){
+	public String newTicket(Model model){
+		model.addAttribute("departments", Department.values());
 		return "newTicket";
 	}
 	//@RequestMapping("/send")
@@ -118,6 +126,7 @@ public class TicketController {
 	@RequestMapping(value="/ViewTicket/{ticketId}", method= RequestMethod.GET)
 	public String viewTicket(Model model, @PathVariable("ticketId") int id)
 	{
+		model.addAttribute("departments", Department.values());
 		model.addAttribute("ticket", ticketService.findById(id));
 		return "viewTicket";
 	}
