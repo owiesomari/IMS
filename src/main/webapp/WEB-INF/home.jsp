@@ -23,9 +23,7 @@
     placeholder="Search for account#" minlength="13" autocomplete="off" ondrop="return false;" onpaste="return false;"
      onkeypress="return event.charCode >= 48 && event.charCode <= 57" minlength="13" maxlength="13" required>
      <button type="submit" class="btn btn-outline-light px-4 mr-2 mb-1" name="search" id="search">Search</button>
- <form class="form-inline navbar-nav ml-4" method="post">
-<a href="../index"><button class="btn btn-danger btn-lg fas fa-sign-out-alt ml-2 mb-1" name="logout" id="logout" title="Logout"></button></a>
-  </form>
+<a href="index"><button class="btn btn-danger btn-lg fas fa-sign-out-alt ml-2 mb-1" name="logout" id="logout" title="Logout"></button></a>
 </div>
 </nav>
 
@@ -55,7 +53,7 @@
   <tbody id="myTable" >
 
       <c:forEach items="${tickets}" var="ticket">
-        <tr style="${ticket.status == 'Open' ? ticket.severity == 'HIGH' ? 'background-color: #f8d7da' : 'background-color: #fff3cd' :'background-color: #d4edda'}">
+        <tr style="${ticket.status == 'Open' ? ticket.severity == 'High' ? 'background-color: #F88F99' : 'background-color: #fff3cd' :'background-color: #d4edda'}">
             <td><a href="ViewTicket/${ticket.id}" style="font-weight: bold; color: black; ">${ticket.id}</a></td>
             <td>${ticket.customerAccountNumber}</td>
             <td>${ticket.subject}</td>

@@ -50,7 +50,6 @@ public class TicketController {
 	@RequestMapping(value = "/addTicket", method = RequestMethod.POST)
 	public String create(Model model, Ticket ticket) {
 		
-		sendEmail(ticket);
 		System.out.println("dept : "+ticket.getDepartment());
 		if(!ticketService.validate(ticket).equals("")){
 			model.addAttribute("errorMessage", ticketService.validate(ticket));
@@ -62,6 +61,7 @@ public class TicketController {
 		ticket.setId(ticketService.getAndIncrementId());
 		ticket.setIssueDate(LocalDate.now().toString()); 
 		Ticket ticketResult=ticketService.save(ticket);
+		sendEmail(ticket,"");
 
 		model.addAttribute("tickets", ticketService.findAll());
 		return "home";	
@@ -76,8 +76,6 @@ public class TicketController {
 			return "home";
 		}
 		
-		System.out.println("email :  "+ user.getEmail());
-		System.out.println("----------- "+userService.getUserByEmail(user.getEmail()).getEmail());
 		if(userService.getUserByEmail(user.getEmail())==null){
 			System.out.println("user not valid ....");
 			return "login";
@@ -88,7 +86,7 @@ public class TicketController {
 
 	}
 
-	@GetMapping("/index")
+	@GetMapping(value="/index")
 	public String index(){
 		return "login";
 	}
@@ -112,10 +110,10 @@ public class TicketController {
 		return "newTicket";
 	}
 	//@RequestMapping("/send")
-	public String sendEmail(Ticket ticket)
+	public String sendEmail(Ticket ticket,final String customMessage)
 	{
 		try {
-			notificationService.sendEmail(ticket);
+			notificationService.sendEmail(ticket,customMessage);
 		}catch (Exception e) {
 			System.out.print(e.getMessage());
 		}

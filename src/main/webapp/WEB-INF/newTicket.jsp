@@ -91,7 +91,7 @@ $(document).ready(function(){
 					    <textarea class="form-control" name="problemDescription" id="problemDescription" rows="3" required></textarea>
                     </div>               
                 </div>
-              <button type="sumbit" class="btn btn-primary px-4 float-right" name="save" id="save"  style="background-color: #004383;">Save</button>  
+              <button  type="sumbit" class="btn btn-primary px-4 float-right" name="save" id="save"  style="background-color: #004383;">Save</button>  
 <button onclick="window.history.back();" type="button" class="btn btn-danger px-4 float-right mr-2" name="cancel" id="cancel">Cancel</button>
             </form>
         </div>
