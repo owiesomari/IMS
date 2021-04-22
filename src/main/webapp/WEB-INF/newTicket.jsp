@@ -15,6 +15,7 @@ $(document).ready(function(){
 		$("#error").text($("#errorMessage").val());
 		  $("#error").addClass("alert alert-danger");
 		 $("#error").show();
+		 setTimeout(function (){$("#error").hide()}, 5000);
 	}
 	});
 </script>

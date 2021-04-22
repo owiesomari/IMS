@@ -50,8 +50,10 @@ public class TicketController {
 	@RequestMapping(value = "/addTicket", method = RequestMethod.POST)
 	public String create(Model model, Ticket ticket) {
 		
-		if(ticketService.validate(ticket).size()!=0){
-			model.addAttribute("validations", ticketService.validate(ticket));
+		System.out.println("dept : "+ticket.getDepartment());
+		if(!ticketService.validate(ticket).equals("")){
+			model.addAttribute("errorMessage", ticketService.validate(ticket));
+			model.addAttribute("departments", Department.values());
 			return "newTicket";
 		}
 		
@@ -121,7 +123,7 @@ public class TicketController {
 	@RequestMapping(value="/ViewTicket/{ticketId}", method= RequestMethod.GET)
 	public String viewTicket(Model model, @PathVariable("ticketId") int id)
 	{
-		System.out.println("view ticket ....");
+		System.out.println("view ticket ...."+id);
 		model.addAttribute("departments", Department.values());
 		model.addAttribute("ticket", ticketService.findById(id));
 		return "viewTicket";
@@ -130,6 +132,11 @@ public class TicketController {
 	@RequestMapping(value="/UpdateTicket", method= RequestMethod.POST)
 	public String updateTicket(Model model, Ticket ticket)
 	{
+		if(!ticketService.validate(ticket).equals("")){
+			model.addAttribute("errorMessage", ticketService.validate(ticket));
+			model.addAttribute("departments", Department.values());
+			return "viewTicket";
+		}
 		
 		System.out.println("from update "+ ticket.getId());
 		Ticket result= ticketService.save(ticket);
