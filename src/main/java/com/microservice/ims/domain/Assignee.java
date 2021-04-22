@@ -1,7 +1,5 @@
 package com.microservice.ims.domain;
 
-import java.util.List;
-
 import javax.persistence.Id;
 
 import org.springframework.data.mongodb.core.mapping.Document;

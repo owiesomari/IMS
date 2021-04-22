@@ -61,9 +61,5 @@ public class Customer {
 	public void setAccountNum(String accountNum) {
 		this.accountNum = accountNum;
 	}
-	
-	
 		
-	
-	
 }

@@ -1,12 +1,6 @@
 package com.microservice.ims.domain;
-
-import java.time.LocalDateTime;
-import java.util.concurrent.atomic.AtomicInteger;
-
 import javax.persistence.Id;
-
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.MongoId;
 
 @Document(collection = "ticket")
 public class Ticket {

@@ -1,16 +1,9 @@
 package com.microservice.ims.service;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
-
 import com.microservice.ims.domain.Ticket;
-import com.microservice.ims.domain.User;
 import com.microservice.ims.repository.TicketRepository;
-
 @Service
 public class TicketService {
 	
@@ -58,11 +51,7 @@ public class TicketService {
 	}
 	
 	public String updateTicketStatus(Ticket ticket){
-		System.out.println("ticket id :::: "+ticket.getId());
-		Ticket result= ticketRepository.findById(ticket.getId());
-		if(result==null){
-			System.out.println("result is null !!!!!!!");
-		}
+		Ticket result= ticketRepository.findById(ticket.getId());		
 		if(!result.getStatus().equals(ticket.getStatus())){
 			result= save(ticket);
 			return result==null?"Error Updating Ticket":"Ticket Updated Successfully";
@@ -75,21 +64,17 @@ public class TicketService {
 		String errors= "";
 		if(ticket.getCustomerAccountNumber().equals("") || !ticket.getCustomerAccountNumber().matches("[0-9]{13}")){
 			errors+="Accont Number can take only numbers !";
-			System.out.println("Invalid Customer Account Number format !");
 		}
 
 		if(ticket.getAssigneeEmail().equals("") || !ticket.getAssigneeEmail().matches("^[a-zA-Z][a-zA-Z0-9_.]*@arabbank.com.jo")){
-			System.out.println("Email not valid !");
 			errors+= "Invalid Assignee Email format !";
 		}
 		
 		if(ticket.getProblemDescription().equals("")){
-			System.out.println("Problem Description can't be empty !");
 			errors+= "Problem Description can't be empty !";
 		}
 		
 		if(ticket.getSubject().equals("")){
-			System.out.println("Subject can't be empty !");
 			errors+= "Subject can't be empty !";
 		}
 
@@ -97,15 +82,11 @@ public class TicketService {
 	}
 
 	public List<Ticket> getByCustomerAccountNumber(String accountNumber) {
-		List<Ticket> tickets= ticketRepository.findBycustomerAccountNumber(accountNumber);
-		for (Ticket ticket : tickets) {
-			System.out.println("ticket # "+ticket.getId());
-		}
+		List<Ticket> tickets= ticketRepository.findBycustomerAccountNumber(accountNumber);		
 		return tickets;
 	}
 
 	public List<Ticket> findByStatusAndSeverity(String status, String severity) {
-		
 		List<Ticket> tickets= ticketRepository.findByStatusAndSeverity(status, severity);
 		return tickets;
 	}
