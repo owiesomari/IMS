@@ -58,7 +58,6 @@ public class TicketController {
 	@RequestMapping(value="/dashboard")
 	public String getAllTickets(Model model, User user)
 	{
-		System.out.println(user.getEmail());
 		if(!userService.verifyUser(user))
 		{
 			model.addAttribute("errorMessage", "wrong email or password, please try again.");
@@ -90,7 +89,6 @@ public class TicketController {
 	
 	@GetMapping("/addNewTicket")
 	public String newTicket(Model model){
-		System.out.println(userId);
 		if(userId==0) {
 			model.addAttribute("errorMessage", "Un-authorized");
 			return "login";
