@@ -12,16 +12,7 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-<script>
-    $(document).ready(function(){
-    $("#error").hide();
-    if($("#errorMessage").val()!=""){
-      $("#error").text($("#errorMessage").val());
-      $("#error").addClass("alert alert-danger");
-       $("#error").show();
-    }
-    });
-</script>
+
 <title>Incident Management System</title>
     <style>
       body{
@@ -63,6 +54,16 @@
 </div>
 
 <script>
+
+$(document).ready(function(){
+    $("#error").hide();
+    if($("#errorMessage").val()!=""){
+      $("#error").text($("#errorMessage").val());
+      $("#error").addClass("alert alert-danger");
+       $("#error").show();
+    }
+    });
+    
   (function() {
     window.addEventListener('load', function() {
       var forms = document.getElementsByClassName('needs-validation');

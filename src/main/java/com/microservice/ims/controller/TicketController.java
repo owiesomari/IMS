@@ -75,7 +75,7 @@ public class TicketController {
 
 	@GetMapping(value="/index")
 	public String index(){
-		//reset userId when logout
+		//Reset userId when logout
 		userId=0;
 		return "login";
 	}

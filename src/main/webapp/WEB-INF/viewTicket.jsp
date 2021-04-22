@@ -9,40 +9,6 @@
 <title>Incident Management System</title>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-<script>
-    $(document).ready(function(){
-        $("#error").hide();
-        if($("#errorMessage").val()!=""){
-          $("#error").text($("#errorMessage").val());
-          $("#error").addClass("alert alert-danger");
-           $("#error").show();
-           setTimeout(function (){$("#error").hide()}, 5000);
-        }
-            var selectedStatus=  $("#status").children("option:selected").val();
-            var isClosed=$("#isClosed").val();
-            if(selectedStatus=="Close" || isClosed=="true"){
-            	$("#close").attr('selected','selected')
-                $("#customerAccountNumber").attr('disabled','disabled')
-                $("#assigneeEmail").attr('disabled','disabled')
-                $("#department").attr('disabled','disabled')
-                $("#subject").attr('disabled','disabled')
-                $("#problemDescription").attr('disabled','disabled')
-                $("#solution").attr('disabled','disabled')
-                $("#severity").attr('disabled','disabled')
-                $("#status").attr('disabled','disabled')
-                $("#update").hide()
-                $("#cancel").hide()
-            }
-            var severity= "${ticket.severity}";
-            $('#severity option[value="'+severity+'"]').attr("selected",true);
-            
-            var dept= "${ticket.department}";
-            $('#department option[value="'+dept+'"]').attr("selected",true); 
-            
-            var status= "${ticket.status}";
-            $('#status option[value="'+status+'"]').attr("selected",true);
-    });
-    </script>
 </head>
 <body>
 
@@ -124,6 +90,39 @@
         </div>
     </div>
 </div>
-
+<script>
+    $(document).ready(function(){
+        $("#error").hide();
+        if($("#errorMessage").val()!=""){
+          $("#error").text($("#errorMessage").val());
+          $("#error").addClass("alert alert-danger");
+           $("#error").show();
+           setTimeout(function (){$("#error").hide()}, 5000);
+        }
+            var selectedStatus=  $("#status").children("option:selected").val();
+            var isClosed=$("#isClosed").val();
+            if(selectedStatus=="Close" || isClosed=="true"){
+            	$("#close").attr('selected','selected')
+                $("#customerAccountNumber").attr('disabled','disabled')
+                $("#assigneeEmail").attr('disabled','disabled')
+                $("#department").attr('disabled','disabled')
+                $("#subject").attr('disabled','disabled')
+                $("#problemDescription").attr('disabled','disabled')
+                $("#solution").attr('disabled','disabled')
+                $("#severity").attr('disabled','disabled')
+                $("#status").attr('disabled','disabled')
+                $("#update").hide()
+                $("#cancel").hide()
+            }
+            var severity= "${ticket.severity}";
+            $('#severity option[value="'+severity+'"]').attr("selected",true);
+            
+            var dept= "${ticket.department}";
+            $('#department option[value="'+dept+'"]').attr("selected",true); 
+            
+            var status= "${ticket.status}";
+            $('#status option[value="'+status+'"]').attr("selected",true);
+    });
+    </script>
 </body>
 </html>

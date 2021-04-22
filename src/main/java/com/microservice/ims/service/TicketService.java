@@ -22,12 +22,6 @@ public class TicketService {
 		return	ticketRepository.findByuserId(userId);
 	}
 	
-	public Ticket findByAssigneeId(int addigneeId)
-	{
-		//return	ticketRepository.findOne()
-		return null;
-
-	}
 	
 	public List<Ticket> findAll () {
 		List<Ticket>tickets = ticketRepository.findAll();
@@ -36,18 +30,16 @@ public class TicketService {
 
 
 	public int getAndIncrementId() {
-		Ticket last = ticketRepository.findTopByOrderByIdDesc();
+		Ticket ticket = ticketRepository.findTopByOrderByIdDesc();
 		int lastId= 0;
-		if(last != null){
-			lastId = last.getId();
+		if(ticket != null){//for first ticket added to db
+			lastId = ticket.getId();
 		}
 		return lastId+1;
 	}
 
 	public Ticket findById(int id){
-		Ticket result= ticketRepository.findById(id);
-
-		return result;
+		return ticketRepository.findById(id);
 	}
 	
 	public String updateTicketStatus(Ticket ticket){
