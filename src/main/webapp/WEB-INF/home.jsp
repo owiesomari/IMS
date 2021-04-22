@@ -82,39 +82,43 @@
       $('#table').DataTable();
     });
     
-     $("#search").click(function(){
-    	 var table="";
-  	  var accountNum= $("#customerAccountNumber").val();
-  	  console.log("account # "+accountNum);
-  	  if(accountNum == "" || accountNum==null) return;
-  	$.ajax({
-  	    type: "POST",
-  	    contentType: "application/json",
-  	    url: "/api/SearchAccountNumber",
-  	    data: accountNum,
-  	  	dataType:"json",
-  	    cache: false,
-  	    success: function (data) {
-  	          
-  	      $.each(data, function(key,value) {
-  	    	 table+="<tr style="+"${ticket.status == 'Open' ? ticket.severity == 'HIGH' ? 'background-color: #f8d7da' : 'background-color: #fff3cd' :'background-color: #d4edda'}"+">"+ 
-  	    	 "<td><a href="+"ViewTicket/"+value.id+" style=font-weight: bold; color: black;>"+value.id+"</a></td>"+
-   	        "<td>"+value.customerAccountNumber+"</td>"+
-   	        "<td>"+value.subject+"</td>"+
-   	     	"<td>"+value.status+"</td>"+
-   	     	"<td>"+value.severity+"</td>"+
-   	  		"<td>"+value.department+"</td>"+
-   			"<td>"+value.assigneeEmail+"</td>"+
-   			"</tr>";
-	        
-  	    	}); 
-  	      $("#searchTable #searchTableBody").append(table);  	      
-  	      $("#searchModal").modal("show");
-  	      
-  	    }
-  	}); 
-      table="";
-    }); 
+
+    var table="";
+        $("#search").click(function(){
+       	 table="";
+     	  var accountNum= $("#customerAccountNumber").val();
+     	  console.log("account # "+accountNum);
+     	  if(accountNum == "" || accountNum==null) return;
+     	$.ajax({
+     	    type: "POST",
+     	    contentType: "application/json",
+     	    url: "/api/SearchAccountNumber",
+     	    data: accountNum,
+     	  	dataType:"json",
+     	    cache: false,
+     	    success: function (data) {
+     	            
+     	      $.each(data, function(key,value) {
+     	    	 table+="<tr style="+"${ticket.status == 'Open' ? ticket.severity == 'HIGH' ? 'background-color: #f8d7da' : 'background-color: #fff3cd' :'background-color: #d4edda'}"+">"+ 
+     	    	 "<td><a href="+"ViewTicket/"+value.id+" style=font-weight: bold; color: black;>"+value.id+"</a></td>"+
+      	        "<td>"+value.customerAccountNumber+"</td>"+
+      	        "<td>"+value.subject+"</td>"+
+      	     	"<td>"+value.status+"</td>"+
+      	     	"<td>"+value.severity+"</td>"+
+      	  		"<td>"+value.department+"</td>"+
+      			"<td>"+value.assigneeEmail+"</td>"+
+      			"</tr>";
+   	        
+     	    	}); 
+     	      $("#searchTable #searchTableBody").append(table);
+     	      $("#searchModal").modal("show");
+     	      
+     	      
+     	    }
+     	});
+     	      $("#searchTable #searchTableBody tr").remove();
+     	  
+       }); 
     </script>
     
 <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

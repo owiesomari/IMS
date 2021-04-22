@@ -70,17 +70,27 @@ public class TicketService {
 		return "Ticket Status is not changed !";
 	}
 
-	public List<String> validate(Ticket ticket){
+	public String validate(Ticket ticket){
 
-		List<String> errors= new ArrayList<>();
-		if(!ticket.getCustomerAccountNumber().matches("[0-9]{13}")){
-			errors.add("Accont Number can take only numbers !");
+		String errors= "";
+		if(ticket.getCustomerAccountNumber().equals("") || !ticket.getCustomerAccountNumber().matches("[0-9]{13}")){
+			errors+="Accont Number can take only numbers !";
 			System.out.println("Invalid Customer Account Number format !");
 		}
 
-		if(!ticket.getAssigneeEmail().matches("^[a-zA-Z][a-zA-Z0-9_.]*@arabbank.com.jo")){
+		if(ticket.getAssigneeEmail().equals("") || !ticket.getAssigneeEmail().matches("^[a-zA-Z][a-zA-Z0-9_.]*@arabbank.com.jo")){
 			System.out.println("Email not valid !");
-			errors.add("Invalid Assignee Email format !");
+			errors+= "Invalid Assignee Email format !";
+		}
+		
+		if(ticket.getProblemDescription().equals("")){
+			System.out.println("Problem Description can't be empty !");
+			errors+= "Problem Description can't be empty !";
+		}
+		
+		if(ticket.getSubject().equals("")){
+			System.out.println("Subject can't be empty !");
+			errors+= "Subject can't be empty !";
 		}
 
 		return errors;

@@ -16,6 +16,7 @@
           $("#error").text($("#errorMessage").val());
           $("#error").addClass("alert alert-danger");
            $("#error").show();
+           setTimeout(function (){$("#error").hide()}, 5000);
         }
             var selectedStatus=  $("#status").children("option:selected").val();
             var isClosed=$("#isClosed").val();
@@ -64,7 +65,7 @@
                             <input type="text" class="form-control" autocomplete="false"
                             onkeypress="return event.charCode >= 48 && event.charCode <= 57" minlength="13" maxlength="13"
                             placeholder="#############"
-                            name="customerAccountNumber" id="customerAccountNumber" value="${ticket.customerAccountNumber }" disabled>
+                            name="customerAccountNumber" id="customerAccountNumber" value="${ticket.customerAccountNumber }" readonly>
                         </div>
                          <div class="col-sm-6">
                             <label>Department</label>
@@ -83,7 +84,8 @@
                      </div> 
                         <div class="col-sm-6">
                             <label>Assignee Email</label>
-                            <input type="email" class="form-control" name="assigneeEmail" id="assigneeEmail" value="${ticket.assigneeEmail }" required>
+                            <input type="email" class="form-control" name="assigneeEmail" id="assigneeEmail" value="${ticket.assigneeEmail }" pattern=".+@arabbank.com.jo" 
+                            required>
                         </div>
                        
                     </div>
