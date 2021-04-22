@@ -15,10 +15,11 @@ public NotificationService( JavaMailSender javaMailSender)
 {
 	this.javaMailSender=javaMailSender;
 }
-public void sendEmail(Ticket ticket, final String customMessage) throws MailException
+public void sendEmail(Ticket ticket, final String customMessage)  
 {
+	
 	String message="TicketId: "+ticket.getId()+"\n\n"+"Cutomer Account Number: "+ticket.getCustomerAccountNumber()+"\n\n"+"Description: "+ ticket.getProblemDescription()+"\n\nSeverity: "+ticket.getSeverity()+"\n\nThis is an auto generated message from IMS system.";
-	String subject=(customMessage!=""?customMessage+"For":"") +  "Ticket#"+ticket.getId()+" - "+ticket.getSubject();
+	String subject=(customMessage!=""?customMessage+" For ":"") +  "Ticket#"+ticket.getId()+" - "+ticket.getSubject();
 	SimpleMailMessage mail=new SimpleMailMessage();
 	mail.setTo(ticket.getAssigneeEmail());
 	mail.setFrom("imsinfo06@gmail.com");

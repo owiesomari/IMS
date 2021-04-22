@@ -48,7 +48,6 @@
 
 <nav class="navbar navbar-light" style="background-color: #004383;">
     <a href="../dashboard"> <h1 class="navbar-brand text-light" >
-        <img src="../images/IMS-logo.png" width="30" height="30" class="d-inline-block align-top">
         Incident Management System  </h1></a></nav>
 
 <div class="container py-5">
