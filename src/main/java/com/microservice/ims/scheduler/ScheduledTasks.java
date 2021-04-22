@@ -33,7 +33,7 @@ public class ScheduledTasks {
 		List<Ticket> tickets= ticketService.findByStatusAndSeverity("Open", "High");
 		
 		for (Ticket ticket : tickets) {
-			ticketController.sendEmail(ticket);
+			ticketController.sendEmail(ticket,"Reminder");
 		}
 		
 	}
